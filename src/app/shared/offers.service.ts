@@ -8,7 +8,7 @@ export class OffersService {
 
     public getOffers(): Promise<Array<Offer>> {
         return this.http
-            .get('http://localhost:3000/offers')
+            .get('http://localhost:3000/offers?highlight=true')
             .toPromise()
             .then((response: any) => response)
     }
