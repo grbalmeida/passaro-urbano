@@ -6,14 +6,18 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { FunComponent } from './fun/fun.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    RestaurantsComponent,
+    FunComponent
   ],
   imports: [
     BrowserModule,
