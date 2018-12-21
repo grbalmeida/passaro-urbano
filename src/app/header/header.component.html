@@ -4,7 +4,7 @@
       <a [routerLink]="['/']" class="navbar-brand">
         <img src="/assets/logo.png" />
       </a>
-      <a a href="#"><img src="/assets/cart.png" /></a>
+      <a href="#"><img src="/assets/cart.png" /></a>
     </div>
   </nav>
 
@@ -12,10 +12,10 @@
     <div class="container">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link active" [routerLink]="['/restaurants']">Restaurantes</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/restaurants']">Restaurantes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/fun']">Diversão</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/fun']">Diversão</a>
         </li>
       </ul>
     </div>
