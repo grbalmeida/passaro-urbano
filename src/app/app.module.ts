@@ -10,7 +10,8 @@ import { FooterComponent } from './footer/footer.component';
 import {HttpClientModule} from '@angular/common/http';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { FunComponent } from './fun/fun.component'
-import {ROUTES} from './app.routes'
+import {ROUTES} from './app.routes';
+import { OfferComponent } from './offer/offer.component'
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {ROUTES} from './app.routes'
     HomeComponent,
     FooterComponent,
     RestaurantsComponent,
-    FunComponent
+    FunComponent,
+    OfferComponent
   ],
   imports: [
     BrowserModule,
