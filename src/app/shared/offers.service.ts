@@ -5,27 +5,33 @@ import {API_URL} from '../app.api'
 
 @Injectable()
 export class OffersService {
-    private url: string = 'http://localhost:3000/offers'
     constructor(private http: HttpClient) {}
 
     public getOffers(): Promise<Array<Offer>> {
         return this.http
-            .get(`${API_URL}?highlight=true`)
+            .get(`${API_URL}/offers?highlight=true`)
             .toPromise()
             .then((response: any) => response)
     }
 
     public getOffersByCategory(category: string): Promise<Array<Offer>> {
         return this.http    
-            .get(`${API_URL}?category=${category}`)
+            .get(`${API_URL}/offers?category=${category}`)
             .toPromise()
             .then((response: any) => response)
     }
 
     public getOfferById(id: number): Promise<Offer> {
         return this.http
-            .get(`${API_URL}?id=${id}`)
+            .get(`${API_URL}/offers?id=${id}`)
             .toPromise()
             .then((response: any) => response.shift())
+    }
+
+    public getHowToUseOfferById(id: number): Promise<string> {
+        return this.http
+            .get(`${API_URL}/how-to-use?id=${id}`)
+            .toPromise()
+            .then((response: any) => response.shift().description)
     }
 }
