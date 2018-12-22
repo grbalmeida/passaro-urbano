@@ -34,4 +34,11 @@ export class OffersService {
             .toPromise()
             .then((response: any) => response.shift().description)
     }
+
+    public getWhereIsOfferById(id: number): Promise<string> {
+        return this.http
+            .get(`${API_URL}/where-is?id=${id}`)
+            .toPromise()
+            .then((response: any) => response.shift().description)
+    }
 }
