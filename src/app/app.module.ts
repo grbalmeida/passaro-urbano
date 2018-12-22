@@ -11,7 +11,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { FunComponent } from './fun/fun.component'
 import {ROUTES} from './app.routes';
-import { OfferComponent } from './offer/offer.component'
+import { OfferComponent } from './offer/offer.component';
+import { HowToUseComponent } from './offer/how-to-use/how-to-use.component';
+import { WhereIsComponent } from './offer/where-is/where-is.component'
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { OfferComponent } from './offer/offer.component'
     FooterComponent,
     RestaurantsComponent,
     FunComponent,
-    OfferComponent
+    OfferComponent,
+    HowToUseComponent,
+    WhereIsComponent
   ],
   imports: [
     BrowserModule,
