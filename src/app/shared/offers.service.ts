@@ -1,5 +1,7 @@
 import {HttpClient} from '@angular/common/http'
 import {Injectable} from '@angular/core'
+import {Observable} from 'rxjs'
+import {map, retry} from 'rxjs/operators'
 import {Offer} from './models/offer.model'
 import {API_URL} from '../app.api'
 
@@ -40,5 +42,12 @@ export class OffersService {
             .get(`${API_URL}/where-is?id=${id}`)
             .toPromise()
             .then((response: any) => response.shift().description)
+    }
+
+    public searchOffers(searchTerm: string): Observable<Array<Offer>> {
+        return this.http    
+            .get(`${API_URL}/offers?description_offer_like=${searchTerm}`)
+            .pipe(retry(10))
+            .pipe(map((response: any) => response))
     }
 }
