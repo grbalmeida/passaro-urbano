@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import {RouterModule} from '@angular/router'
+import {FormsModule} from '@angular/forms'
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
@@ -17,7 +17,9 @@ import { WhereIsComponent } from './offer/where-is/where-is.component'
 import {ReducedDescription} from './shared/reduced-description.pipe'
 
 import {registerLocaleData} from '@angular/common'
-import localePt from '@angular/common/locales/pt'
+import localePt from '@angular/common/locales/pt';
+import { OrderComponent } from './order/order.component';
+import { OrderSummaryComponent } from './order-summary/order-summary.component'
 registerLocaleData(localePt);
 
 @NgModule({
@@ -31,12 +33,14 @@ registerLocaleData(localePt);
     OfferComponent,
     HowToUseComponent,
     WhereIsComponent,
-    ReducedDescription
+    ReducedDescription,
+    OrderComponent,
+    OrderSummaryComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
+    FormsModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
