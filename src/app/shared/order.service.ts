@@ -16,6 +16,6 @@ export class OrderService {
 
         return this.http
             .post(`${API_URL}/orders`, JSON.stringify(order), {headers})
-            .pipe(map((response: HttpResponse<any>) => response.id))
+            .pipe(map((response: HttpResponse<any>) => response['id']))
     }
 }
