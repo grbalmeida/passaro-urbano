@@ -3,55 +3,51 @@
     <form [formGroup]="form" novalidate (ngSubmit)="makeOrder()">
       <h5>Sua Compra</h5>
       <hr />
-      <div class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
+      <div *ngIf="cartService.showItems().length; else emptyCart">
+        <div 
+        *ngFor="let cartItem of cartItems"
+        class="form-row" 
+        style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
         <div class="form-group col-sm-1">
-          <img src="/assets/offers/1/img1.jpg" class="img-fluid">
+          <img [src]="cartItem.image.url" class="img-fluid">
         </div>
-        <div class="form-group col-sm-6">
-          Super Burger
-          <br />
-          Rodízio de Mini-hambúrger com opção de entrada.
-        </div>
-        <div>
-          <div class="row">
-            <div class="col">
-              <button type="button" class="btn btn-link">-</button>
-              1
-              <button type="button" class="btn btn-link">+</button>
+          <div class="form-group col-sm-6">
+            {{cartItem.title}}
+            <br />
+            {{cartItem.description_offer}}
+          </div>
+          <div>
+            <div class="row">
+              <div class="col">
+                <button 
+                  type="button" 
+                  class="btn btn-link"
+                  (click)="decreaseQuantity(cartItem)">-</button>
+                {{cartItem.quantity}}
+                <button 
+                  type="button" 
+                  class="btn btn-link"
+                  (click)="increaseQuantity(cartItem)">+</button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="form-group col-sm-3 d-flex justify-content-end">
-          29.90
-        </div>
-      </div>
-      <div class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
-        <div class="form-group col-sm-1">
-          <img src="/assets/offers/4/img1.jpg" class="img-fluid">
-        </div>
-        <div class="form-group col-sm-6">
-          Estância das águas
-          <br />
-          Diversão garantida com piscinas, trilhas e muito mais.
-        </div>
-        <div>
-          <div class="row">
-            <div class="col">
-              <button type="button" class="btn btn-link">-</button>
-              1
-              <button type="button" class="btn btn-link">+</button>
-            </div>
+          <div class="form-group col-sm-3 d-flex justify-content-end">
+            {{cartItem.price * cartItem.quantity | currency:'BRL'}}
           </div>
         </div>
-        <div class="form-group col-sm-3 d-flex justify-content-end">
-          31.90
-        </div>
+        <div class="form-row">
+          <div class="form-group col d-flex justify-content-end">
+            <h4>Total do pedido: {{this.cartService.getTotalOrders() | currency:'BRL'}}</h4>
+          </div>
+        </div>  
       </div>
-      <div class="form-row">
-        <div class="form-group col d-flex justify-content-end">
-          <h4>Total do pedido: 61.80</h4>
+      <ng-template #emptyCart>
+        <div 
+          class="form-row d-flex justify-content-center" 
+          style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
+          Seu carrinho está vazio! Não perca tempo, aproveite as ofertas!
         </div>
-      </div>
+      </ng-template>
       <br />
       <h5>Dados de entrega</h5>
       <hr />
@@ -119,8 +115,8 @@
             formControlName="paymentOption"
           >
             <option value="">Selecione uma opção</option>
-            <option value="dinheiro">Dinheiro</option>
-            <option value="debito">Débito</option>
+            <option value="cash">Dinheiro</option>
+            <option value="debit-card">Débito</option>
           </select>
           <small 
             *ngIf="form.get('paymentOption').valid && form.get('paymentOption').touched"

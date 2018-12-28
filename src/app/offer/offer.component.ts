@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router'
 import {OffersService} from '../shared/offers.service'
 import {Offer} from '../shared/models/offer.model'
+import {CartService} from '../shared/cart.service'
 
 @Component({
   selector: 'app-offer',
@@ -16,7 +17,8 @@ export class OfferComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute, 
-    private offersService: OffersService
+    private offersService: OffersService,
+    private cartService: CartService
   ) { }
 
   ngOnInit() {
@@ -25,5 +27,10 @@ export class OfferComponent implements OnInit {
       .getOfferById(params.id)
       .then((offer: Offer) => this.offer = offer)
     })
+  }
+
+  public addItemToCart() {
+    this.cartService
+      .includeItem(this.offer)
   }
 }

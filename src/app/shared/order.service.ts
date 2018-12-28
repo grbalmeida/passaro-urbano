@@ -10,7 +10,7 @@ import {API_URL} from '../app.api'
 export class OrderService {
     constructor(private http: HttpClient) {}
 
-    public makeOrder(order: Order): Observable<any> {
+    public makeOrder(order: Order): Observable<number> {
         const headers: HttpHeaders = new HttpHeaders()
         headers.append('Content-Type', 'application/json')
 
